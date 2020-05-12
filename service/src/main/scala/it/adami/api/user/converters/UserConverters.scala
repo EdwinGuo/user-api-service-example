@@ -4,7 +4,7 @@ import java.sql.Timestamp
 import java.time.LocalDateTime
 
 import it.adami.api.user.domain.User
-import it.adami.api.user.http.json.{CreateUserRequest, UserDetailResponse}
+import it.adami.api.user.http.json.{CreateUserRequest, SearchUserItem, UserDetailResponse}
 import it.adami.api.user.util.StringUtils
 
 object UserConverters {
@@ -23,6 +23,17 @@ object UserConverters {
 
   implicit def convertToUserDetail(user: User): UserDetailResponse =
     UserDetailResponse(
+      firstname = user.firstname,
+      lastname = user.lastname,
+      email = user.email,
+      dateOfBirth = user.dateOfBirth.toString,
+      gender = user.gender,
+      creationDate = user.creationDate.toString
+    )
+
+  implicit def convertToUserSearchDetail(user: User): SearchUserItem =
+    SearchUserItem(
+      id = user.id.get,
       firstname = user.firstname,
       lastname = user.lastname,
       email = user.email,

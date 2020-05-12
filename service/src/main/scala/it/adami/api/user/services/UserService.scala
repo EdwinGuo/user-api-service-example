@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 import cats.effect.IO
 import com.typesafe.scalalogging.LazyLogging
 import it.adami.api.user.errors.{CreateUserError, GenericError, UserNameAlreadyInUse, UserNotFound}
-import it.adami.api.user.http.json.{CreateUserRequest, UpdateUserRequest, UserDetailResponse}
+import it.adami.api.user.http.json.{CreateUserRequest, SearchUsersResponse, UpdateUserRequest, UserDetailResponse}
 import it.adami.api.user.repository.UserRepository
 import it.adami.api.user.converters.UserConverters._
 import it.adami.api.user.util.StringUtils
@@ -68,4 +68,8 @@ class UserService(userRepository: UserRepository) extends LazyLogging {
           .map(_ => Right())
     }
 
+  def searchUsers(loggedUser: Int, query: String): IO[SearchUsersResponse] =
+    userRepository
+      .searchUsers(loggedUser, query)
+      .map(result => SearchUsersResponse(result.map(convertToUserSearchDetail)))
 }
