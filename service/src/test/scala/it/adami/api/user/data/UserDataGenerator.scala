@@ -54,10 +54,7 @@ object UserDataGenerator {
       id = Random.nextInt(5),
       firstname = Random.nextString(5),
       lastname = Random.nextString(5),
-      email = Random.nextString(5),
-      dateOfBirth = "07-07-2000",
-      gender = "MALE",
-      creationDate = "09-09-2012"
+      email = Random.nextString(5)
     )
 
   def generateUpdateUserRequest: UpdateUserRequest =

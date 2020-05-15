@@ -32,14 +32,6 @@ object UserConverters {
     )
 
   implicit def convertToUserSearchDetail(user: User): SearchUserItem =
-    SearchUserItem(
-      id = user.id.get,
-      firstname = user.firstname,
-      lastname = user.lastname,
-      email = user.email,
-      dateOfBirth = user.dateOfBirth.toString,
-      gender = user.gender,
-      creationDate = user.creationDate.toString
-    )
+    SearchUserItem(id = user.id.get, firstname = user.firstname, lastname = user.lastname, email = user.email)
 
 }
